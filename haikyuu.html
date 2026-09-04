@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haikyuu!! — Karasuno vuela más alto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink: #14171c;
+    --court: #eee3c8;
+    --court-line: #cabb95;
+    --orange: #ff6a1a;
+    --navy: #232a4d;
+    --yellow: #ffcd3c;
+    --ink-soft: #ced2da;
+    --text-dark: #1c1f26;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--court);
+    color:var(--text-dark);
+    line-height:1.5;
+  }
+
+  .display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    letter-spacing:0.5px;
+    line-height:0.95;
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- NAV ---------- */
+
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 6%;
+    background:var(--ink);
+    border-bottom:3px solid var(--orange);
+  }
+
+  .nav .brand{
+    font-family:'Anton', sans-serif;
+    color:#fff;
+    font-size:1.3rem;
+    letter-spacing:1px;
+  }
+
+  .nav .brand span{ color:var(--orange); }
+
+  .nav ul{
+    list-style:none;
+    display:flex;
+    gap:28px;
+  }
+
+  .nav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-weight:600;
+    font-size:0.95rem;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+
+  .nav a:hover, .nav a:focus-visible{
+    color:#fff;
+    border-color:var(--orange);
+    outline:none;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    position:relative;
+    background:var(--ink);
+    color:#fff;
+    padding:110px 6% 140px;
+    overflow:hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(135deg, transparent 46%, rgba(255,106,26,0.9) 46%, rgba(255,106,26,0.9) 49%, transparent 49%),
+      linear-gradient(135deg, transparent 51%, var(--navy) 51%);
+    opacity:0.9;
+  }
+
+  .hero-inner{
+    position:relative;
+    max-width:640px;
+  }
+
+  .hero .kicker{
+    font-weight:600;
+    color:var(--yellow);
+    font-size:1.05rem;
+    margin-bottom:10px;
+  }
+
+  .hero h1{
+    font-size:clamp(3rem, 8vw, 5.5rem);
+    color:#fff;
+  }
+
+  .hero h1 .stroke{
+    -webkit-text-stroke: 2px var(--orange);
+    color:transparent;
+  }
+
+  .hero p.lead{
+    margin-top:22px;
+    max-width:38ch;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+  }
+
+  .spike-line{
+    position:absolute;
+    right:8%;
+    top:18%;
+    width:2px;
+    height:280px;
+    background:var(--orange);
+    transform-origin:top;
+    transform:rotate(28deg) scaleY(0);
+    animation: draw 1s 0.3s ease-out forwards;
+  }
+
+  .spike-line::after{
+    content:"🏐";
+    position:absolute;
+    bottom:-14px;
+    left:-13px;
+    font-size:1.6rem;
+  }
+
+  @keyframes draw{ to{ transform:rotate(28deg) scaleY(1); } }
+
+  @media (prefers-reduced-motion: reduce){
+    .spike-line{ animation:none; transform:rotate(28deg) scaleY(1); }
+  }
+
+  .stats{
+    position:relative;
+    display:flex;
+    gap:48px;
+    margin-top:56px;
+    flex-wrap:wrap;
+  }
+
+  .stats .stat .num{
+    font-family:'Anton', sans-serif;
+    font-size:2.4rem;
+    color:var(--orange);
+  }
+
+  .stats .stat .label{
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+
+  section{ padding:90px 6%; }
+
+  .section-head{
+    max-width:640px;
+    margin-bottom:48px;
+  }
+
+  .section-head h2{
+    font-size:clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .section-head p{
+    margin-top:14px;
+    max-width:56ch;
+    color:#4a4d55;
+  }
+
+  /* ---------- SINOPSIS ---------- */
+
+  .sinopsis{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+  }
+
+  .sinopsis .card-quote{
+    background:var(--navy);
+    color:#fff;
+    padding:34px;
+    border-left:6px solid var(--orange);
+  }
+
+  .sinopsis .card-quote p{
+    font-size:1.15rem;
+    font-style:italic;
+  }
+
+  .sinopsis .card-quote footer{
+    margin-top:16px;
+    padding:0;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    font-style:normal;
+  }
+
+  @media (max-width: 800px){
+    .sinopsis{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- ROSTER ---------- */
+
+  .roster{ background:var(--ink); color:#fff; }
+
+  .roster .section-head p{ color:var(--ink-soft); }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:22px;
+  }
+
+  .jersey{
+    background:#1b1f27;
+    border:1px solid #2b303b;
+    padding:26px 22px;
+    position:relative;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+
+  .jersey:hover, .jersey:focus-within{
+    border-color:var(--orange);
+    transform:translateY(-4px);
+  }
+
+  .jersey .number{
+    font-family:'Anton', sans-serif;
+    font-size:3rem;
+    color:var(--orange);
+    line-height:1;
+  }
+
+  .jersey .name{
+    margin-top:8px;
+    font-size:1.15rem;
+    font-weight:700;
+  }
+
+  .jersey .role{
+    color:var(--yellow);
+    font-weight:600;
+    font-size:0.85rem;
+    margin-top:2px;
+  }
+
+  .jersey .desc{
+    margin-top:12px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- MARCADOR / QUOTE ---------- */
+
+  .marcador{
+    background:var(--court-line);
+    text-align:center;
+  }
+
+  .board{
+    background:var(--ink);
+    color:#fff;
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 40px;
+    border:3px solid var(--orange);
+  }
+
+  .board .tag{
+    color:var(--yellow);
+    font-weight:600;
+    font-size:0.95rem;
+    margin-bottom:18px;
+  }
+
+  .board .line{
+    font-family:'Anton', sans-serif;
+    font-size:clamp(1.6rem, 4vw, 2.6rem);
+    line-height:1.25;
+  }
+
+  .board .line .hi{ color:var(--orange); }
+
+  /* ---------- FOOTER ---------- */
+
+  footer.site{
+    background:var(--navy);
+    color:var(--ink-soft);
+    padding:30px 6%;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.9rem;
+  }
+
+  footer.site strong{ color:#fff; }
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand">KARASUNO <span>雷</span></div>
+  <ul>
+    <li><a href="#sinopsis">La historia</a></li>
+    <li><a href="#roster">Jugadores</a></li>
+    <li><a href="#marcador">Frase</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">Preparatoria Karasuno · Club de Vóleibol</div>
+    <h1 class="display">VUELA<br><span class="stroke">MÁS ALTO</span></h1>
+    <p class="lead">La cancha mide 9 metros de cada lado. Lo que ocurre dentro de ese cuadro, en Haikyuu!!, puede durar toda una vida.</p>
+  </div>
+  <div class="spike-line" aria-hidden="true"></div>
+  <div class="stats">
+    <div class="stat"><div class="num">4</div><div class="label">Temporadas</div></div>
+    <div class="stat"><div class="num">85</div><div class="label">Episodios</div></div>
+    <div class="stat"><div class="num">2014</div><div class="label">Año de estreno</div></div>
+  </div>
+</header>
+
+<section id="sinopsis">
+  <div class="sinopsis">
+    <div class="section-head" style="margin-bottom:0;">
+      <h2>Un rey sin trono, un cuervo sin vuelo</h2>
+      <p>
+        Shoyo Hinata quedó deslumbrado al ver un partido de vóleibol por televisión:
+        un jugador bajito, apodado "el pequeño gigante", saltando por encima de
+        rivales mucho más altos. Años después entra a Karasuno decidido a
+        repetir esa hazaña, y ahí se cruza con Tobio Kageyama, un colocador
+        brillante pero temido por su carácter. De rivales a compañeros,
+        su combinación de velocidad y precisión se vuelve el arma que
+        Karasuno necesitaba para volver a lo más alto.
+      </p>
+    </div>
+    <blockquote class="card-quote">
+      <p>"No se trata de ganar solo el balón. Se trata de no dejar que la pelota toque el suelo, hasta el último segundo."</p>
+      <footer>— Filosofía del equipo de Karasuno</footer>
+    </blockquote>
+  </div>
+</section>
+
+<section id="roster" class="roster">
+  <div class="section-head">
+    <h2>La alineación titular</h2>
+    <p>Seis posiciones, seis formas distintas de entender el mismo deporte.</p>
+  </div>
+  <div class="grid">
+    <div class="jersey" tabindex="0">
+      <div class="number">10</div>
+      <div class="name">Hinata Shoyo</div>
+      <div class="role">Rematador de punta</div>
+      <p class="desc">Bajo estatura, salto descomunal. Compensa lo que le falta en altura con reflejos y velocidad.</p>
+    </div>
+    <div class="jersey" tabindex="0">
+      <div class="number">9</div>
+      <div class="name">Kageyama Tobio</div>
+      <div class="role">Colocador</div>
+      <p class="desc">Apodado "el Rey de la cancha". Lee el juego como nadie, aunque le costó aprender a confiar en su equipo.</p>
+    </div>
+    <div class="jersey" tabindex="0">
+      <div class="number">2</div>
+      <div class="name">Sugawara Koushi</div>
+      <div class="role">Colocador suplente</div>
+      <p class="desc">El corazón silencioso del equipo. Lidera desde la banca tanto como desde la cancha.</p>
+    </div>
+    <div class="jersey" tabindex="0">
+      <div class="number">5</div>
+      <div class="name">Tanaka Ryunosuke</div>
+      <div class="role">Ala-rematador</div>
+      <p class="desc">Puro fuego y ruido. Su remate de potencia intimida antes incluso de golpear el balón.</p>
+    </div>
+    <div class="jersey" tabindex="0">
+      <div class="number">4</div>
+      <div class="name">Nishinoya Yuu</div>
+      <div class="role">Líbero</div>
+      <p class="desc">El "guardián supremo". Ninguna pelota que él pueda alcanzar toca el suelo.</p>
+    </div>
+    <div class="jersey" tabindex="0">
+      <div class="number">11</div>
+      <div class="name">Tsukishima Kei</div>
+      <div class="role">Central / bloqueador</div>
+      <p class="desc">Frío, calculador, observador. Su bloqueo es una trampa que arma antes de que el rival lo note.</p>
+    </div>
+  </div>
+</section>
+
+<section id="marcador" class="marcador">
+  <div class="board">
+    <div class="tag">Set final · punto de partido</div>
+    <p class="line display">MIENTRAS LA PELOTA<br>NO TOQUE EL <span class="hi">SUELO</span>,<br>AÚN TENEMOS OPORTUNIDAD.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div><strong>Karasuno High</strong> · Club de Vóleibol</div>
+  <div>Página de fans — Haikyuu!!</div>
+</footer>
+
+</body>
+</html>
